@@ -45,7 +45,7 @@
    MEMBERS    = int bitmapCurrentElementsDescriptorsIndex
    MEMBERS    = int bitmapSize
    MEMBERS    = int bitmapStart
-   MEMBERS    = int bitmapCurrent
+   MEMBERS    = long bitmapCurrent
    MEMBERS    = grib_accessors_list* dataAccessors
    MEMBERS    = int unpackMode
    MEMBERS    = int bitsToEndData
@@ -57,8 +57,8 @@
    MEMBERS    = int nInputReplications
    MEMBERS    = int iInputReplications
    MEMBERS    = long* inputExtendedReplications
-   MEMBERS    = int nInputExtendedReplications
-   MEMBERS    = int iInputExtendedReplications
+   MEMBERS    = long nInputExtendedReplications
+   MEMBERS    = long iInputExtendedReplications
    MEMBERS    = long* inputShortReplications
    MEMBERS    = int nInputShortReplications
    MEMBERS    = int iInputShortReplications
@@ -1406,6 +1406,7 @@ static int encode_new_replication(grib_context* c, grib_accessor_bufr_data_array
             }
             break;
         case 31002:
+        case 31192:
             if (self->nInputExtendedReplications >= 0) {
                 if (self->iInputExtendedReplications >= self->nInputExtendedReplications) {
                     grib_context_log(c, GRIB_LOG_ERROR, "Array inputExtendedDelayedDescriptorReplicationFactor: dimension mismatch (nInputExtendedReplications=%d)",
@@ -1570,7 +1571,8 @@ static int build_bitmap(grib_accessor_bufr_data_array* self, unsigned char* data
             if (descriptors[i]->code == 101000) {
                 iDelayedReplication = iBitmapOperator + 2;
                 Assert(descriptors[iDelayedReplication]->code == 31001 ||
-                       descriptors[iDelayedReplication]->code == 31002);
+                       descriptors[iDelayedReplication]->code == 31002 ||
+                       descriptors[iDelayedReplication]->code == 31192);
                 i = iDelayedReplication;
                 if (self->compressedData) {
                     ppos = *pos;
@@ -1636,6 +1638,7 @@ static int consume_bitmap(grib_accessor_bufr_data_array* self, int iBitmapOperat
                 bitmapSize = self->inputReplications[self->iInputReplications];
                 break;
             case 31002:
+            case 31192:
                 bitmapSize = self->inputExtendedReplications[self->iInputExtendedReplications];
                 break;
             default:
@@ -1704,6 +1707,7 @@ static int build_bitmap_new_data(grib_accessor_bufr_data_array* self, unsigned c
                         bitmapSize = self->inputReplications[self->iInputReplications];
                         break;
                     case 31002:
+                    case 31192:
                         if (!self->inputExtendedReplications) {
                             grib_context_log(c, GRIB_LOG_ERROR, "build_bitmap_new_data: No inputExtendedReplications");
                             return GRIB_ENCODING_ERROR;
@@ -2000,7 +2004,7 @@ static grib_accessor* create_accessor_from_descriptor(const grib_accessor* a, gr
             elementAccessor = grib_accessor_factory(section, &creator, 0, NULL);
             if (self->canBeMissing[idx])
                 elementAccessor->flags |= GRIB_ACCESSOR_FLAG_CAN_BE_MISSING;
-            if (self->expanded->v[idx]->code == 31000 || self->expanded->v[idx]->code == 31001 || self->expanded->v[idx]->code == 31002 || self->expanded->v[idx]->code == 31031)
+            if (self->expanded->v[idx]->code == 31000 || self->expanded->v[idx]->code == 31001 || self->expanded->v[idx]->code == 31002 || self->expanded->v[idx]->code == 31192 || self->expanded->v[idx]->code == 31031)
                 elementAccessor->flags |= GRIB_ACCESSOR_FLAG_READ_ONLY;
             accessor_bufr_data_element_set_index(elementAccessor, ide);
             accessor_bufr_data_element_set_descriptors(elementAccessor, self->expanded);
@@ -2284,6 +2288,7 @@ static int bitmap_ref_skip(grib_accessors_list* al, int* err)
         case 31000:
         case 31001:
         case 31002:
+        case 31192:
             return 1;
     }
     return 0;
@@ -2585,7 +2590,7 @@ static int create_keys(const grib_accessor* a, long onlySubset, long startSubset
                 }
                 bitmapStart[bitmapIndex] = grib_accessors_list_last(self->dataAccessors);
                 bitmapSize[bitmapIndex]  = 1;
-                if (self->expanded->v[idx - 1]->code == 31002 || self->expanded->v[idx - 1]->code == 31001)
+                if (self->expanded->v[idx - 1]->code == 31002 || self->expanded->v[idx - 1]->code == 31001 || self->expanded->v[idx - 1]->code == 31192)
                     extraElement += 1;
 
                 if (bitmapGroup[bitmapIndex]) {

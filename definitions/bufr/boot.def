@@ -21,6 +21,8 @@ transient inputDelayedDescriptorReplicationFactor={-1} : hidden;
 transient inputExtendedDelayedDescriptorReplicationFactor={-1} : hidden;
 #negative value=not used
 transient inputShortDelayedDescriptorReplicationFactor={-1} : hidden;
+#negative value=not used
+transient inputLongDelayedDescriptorReplicationFactor={-1} : hidden;
 
 transient inputDataPresentIndicator={-1} : hidden;
 
