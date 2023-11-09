@@ -62,7 +62,7 @@
 006196|entry006196|long|Distance oblique maximal d'utilisation des donnees|M|-3|0|16|M|-3|2
 006197|entry006197|long|Distance NS sur le plan de projection du coin NW de l'image|M|0|-1024000|24|M|0|3
 006198|entry006198|double|Longitude du meridien parallele a l'axe des Y|DEGREE|5|-18000000|26|DEGREE|5|4
-006199|entry006199|long|Portee hydrologique utile|M|-3|0|10|M|-3|2
+006199|mfUsefulHydrologicalRange|long|Portee hydrologique utile|M|-3|0|10|M|-3|2
 006217|entry006217|double|Y-location from earth's centre in direction 90 est|M|2|-1073741824|31|M|2|4
 006232|entry006232|double|Wavenumber (spectral)|RADS/M|5|0|13|RADS/M|5|2
 007192|entry007192|double|HAUTEUR AU DESSUS DU SOL|M|2|0|15|M|2|2
@@ -144,7 +144,7 @@
 016195|entry016195|long|Number of intracloud lightning flashes|NUMERIC|0|0|16|NUMERIC|0|2
 019191|entry019191|long|Length of the great axis of the fitting ellipse of the cloud system|M|-3|0|25|M|-3|4
 019192|entry019192|long|Length of the small axis of the fitting ellipse of the cloud system|M|-3|0|25|M|-3|4
-019193|entry019193|long|Angle of the fitting ellipse of the cloud system|DEGREE TRUE|0|0|9|DEGREE TRUE|0|2
+019193|mfAngleOfFittingEllipse|long|Angle of the fitting ellipse of the cloud system|DEGREE TRUE|0|0|9|DEGREE TRUE|0|2
 019194|entry019194|long|Area of the cloud system at this brightness temperature threshold|M**2|-6|0|28|M**2|-6|4
 019200|entry019200|double|Area expansion rate of the cloud system|S-1|5|-1048576|21|S-1|5|3
 020192|entry020192|table|Classe de nebulosite SYMPO|CODE TABLE|0|0|3|CODE TABLE|0|2
@@ -238,15 +238,15 @@
 025193|entry025193|double|Numero de version logicielle du calculateur|NUMERIC|2|0|16|NUMERIC|2|2
 025194|entry025194|double|Numero de version de composite|NUMERIC|2|0|16|NUMERIC|2|2
 025195|entry025195|long|Numero de version de carte utilisee pour composition|NUMERIC|0|0|8|NUMERIC|0|1
-025196|entry025196|table|Methode de cumul|CODE TABLE|0|0|8|CODE TABLE|0|3
-025197|entry025197|long|Nombre d'images prises en compte|NUMERIC|0|0|24|NUMERIC|0|3
+025196|mfAccumulationMethod|table|Methode de cumul|CODE TABLE|0|0|8|CODE TABLE|0|3
+025197|mfNumberOfUsedImages|long|Nombre d'images prises en compte|NUMERIC|0|0|24|NUMERIC|0|3
 025198|entry025198|long|Nombre de portes par tir|NUMERIC|0|0|16|NUMERIC|0|2
 025199|entry025199|table|Methode d'integration distance|CODE TABLE|0|0|4|CODE TABLE|0|2
 025200|entry025200|table|Methode d'integration azimut|CODE TABLE|0|0|4|CODE TABLE|0|2
 025207|entry025207|double|Correction d'intensite de precipitation|KG/M**2|3|0|18|KG/M**2|3|3
 025208|entry025208|double|SAMPLING INTERVAL (TIME)|S|4|0|15|S|4|2
 025209|entry025209|double|SAMPLING INTERVAL (SPACE)|M|2|0|12|M|2|2
-025210|entry025210|double|Facteur de correction global (pluie pluviometre)/(pluie radar)|NUMERIC|2|0|10|NUMERIC|2|2
+025210|mfGlobalCorrectionRainGaugeByRainRadar|double|Facteur de correction global (pluie pluviometre)/(pluie radar)|NUMERIC|2|0|10|NUMERIC|2|2
 025211|entry025211|long|Seuil de reflectivite pour le calcul des deplacements d'echos radar|DBZ|0|0|7|DBZ|0|1
 025212|entry025212|long|Seuil d'occurrence pour la definition des echos fixes (%)|NUMERIC|0|0|7|NUMERIC|0|1
 025213|entry025213|long|Seuil de presence minimal des echos fixes pour valider l'image (%)|NUMERIC|0|0|7|NUMERIC|0|1
@@ -295,23 +295,23 @@
 049198|entry049198|table|Cq controle de coherence echos fixes|CODE TABLE|0|0|4|CODE TABLE|0|2
 049199|entry049199|table|Cq comparaison avec les donnees satellitaires|CODE TABLE|0|0|4|CODE TABLE|0|2
 049200|entry049200|double|Taux de pixels identifies propagation anormale|NUMERIC|1|-10|14|NUMERIC|1|2
-049201|entry049201|table|Code detection de propagation anormale|CODE TABLE|0|0|4|CODE TABLE|0|2
-049204|entry049204|long|Statut de la donnee|%|0|0|8|%|0|1
+049201|mfAnormalPropagationDetectionCode|table|Code detection de propagation anormale|CODE TABLE|0|0|4|CODE TABLE|0|2
+049204|mfDataStatus|long|Statut de la donnee|%|0|0|8|%|0|1
 049206|entry049206|double|Valeur de la composante ouest/est du vecteur advection|M/S|1|-600|11|M/S|1|2
 049207|entry049207|double|Valeur de la composante nord/sud du vecteur advection|M/S|1|-600|11|M/S|1|2
 049208|entry049208|flag|Donnees avec/sans correction d advection|FLAG TABLE|0|0|2|FLAG TABLE|0|1
-049209|entry049209|table|Code pour l'unite de mesure de la lame d'eau|CODE TABLE|0|0|8|CODE TABLE|0|3
-049210|entry049210|table|Numero de PVR|CODE TABLE|0|0|2|CODE TABLE|0|1
+049209|mfWaterLevelUnit|table|Code pour l'unite de mesure de la lame d'eau|CODE TABLE|0|0|8|CODE TABLE|0|3
+049210|mfnumberOfPVR|table|Numero de PVR|CODE TABLE|0|0|2|CODE TABLE|0|1
 049211|mfSentByRadarComputer|table|Cptq images emises par le calculateur radar|CODE TABLE|0|0|16|CODE TABLE|0|4
 049212|mfReceivedByConcentrator|table|Cptq images recues par le concentrateur|CODE TABLE|0|0|16|CODE TABLE|0|4
 049213|mfSentByConcentrator|table|Cptq images emises par le concentrateur radar|CODE TABLE|0|0|16|CODE TABLE|0|4
 049214|mfReceivedByBroadcast|table|Cptq images recues par le systeme de diffusion|CODE TABLE|0|0|16|CODE TABLE|0|4
 049215|mfSentByBroadcast|table|Cptq images emises par le systeme de diffusion|CODE TABLE|0|0|16|CODE TABLE|0|4
 049216|mfReceivedByArchiving|table|Cptq images recues par la machine d'archivage|CODE TABLE|0|0|16|CODE TABLE|0|4
-049220|entry049220|long|Altitude de l'isotherme 0 degre du PVR|M|-2|0|7|M|-2|1
-049221|entry049221|double|Taux de decroissance du PVR au dessus de l'isotherme 0 degre|DB/KM|1|-100|7|DB/KM|1|1
-049222|entry049222|long|Largeur de la bande brillante du PVR|M|-2|0|5|M|-2|1
-049223|entry049223|double|Facteur du renforcement du PVR|NUMERIC|1|0|7|NUMERIC|1|1
+049220|mfIsothermAltitude|long|Altitude de l'isotherme 0 degre du PVR|M|-2|0|7|M|-2|1
+049221|mfIsothermDecayRateAbove0DegreeLayer|double|Taux de decroissance du PVR au dessus de l'isotherme 0 degre|DB/KM|1|-100|7|DB/KM|1|1
+049222|mfBrighbandWidth|long|Largeur de la bande brillante du PVR|M|-2|0|5|M|-2|1
+049223|mfStrengtheningFactor|double|Facteur du renforcement du PVR|NUMERIC|1|0|7|NUMERIC|1|1
 049224|entry049224|flag|Indicateur radar DOPPLER|FLAG TABLE|0|0|2|FLAG TABLE|0|1
 049225|entry049225|flag|Indicateur radar double polarisation|FLAG TABLE|0|0|2|FLAG TABLE|0|1
 049227|entry049227|table|Statut de la donnee dans les fichiers pour la prévision numerique|CODE TABLE|0|0|8|CODE TABLE|0|3
