@@ -15,21 +15,21 @@
 001220|entry001220|long|Identification mark of a cloud system ( format YYYYMMDDhhmm_Tb_lat_lon or ``FIRST'')|CCITT IA|0|0|248|CCITT IA|0|31
 001221|entry001221|long|Modele de reference - reference producteur|CCITT IA|0|0|104|CCITT IA|0|13
 002192|entry002192|long|SAR azimuth angle|DEGREE|0|0|9|DEGREE|0|2
-002193|entry002193|table|Type de calculateur|CODE TABLE|0|0|8|CODE TABLE|0|3
-002194|entry002194|table|Indicateur du dernier etalonnage|CODE TABLE|0|0|8|CODE TABLE|0|3
-002195|entry002195|long|Frequence du dernier etalonnage|HZ|-6|0|16|HZ|-6|2
-002196|entry002196|long|Reglage bas du dernier etalonnage|NUMERIC|0|0|16|NUMERIC|0|2
-002197|entry002197|long|Reglage haut du dernier etalonnage|NUMERIC|0|0|16|NUMERIC|0|2
-002198|entry002198|table|Indicateur d'arret ou de panne|CODE TABLE|0|0|8|CODE TABLE|0|3
-002199|entry002199|double|Constante radar|DB|1|-1000|16|DB|1|2
+002193|mfComputerType|table|Type de calculateur|CODE TABLE|0|0|8|CODE TABLE|0|3
+002194|mfLastCalibrationStatus|table|Indicateur du dernier etalonnage|CODE TABLE|0|0|8|CODE TABLE|0|3
+002195|mfLastCalibrationFrequency|long|Frequence du dernier etalonnage|HZ|-6|0|16|HZ|-6|2
+002196|mfLastCalibrationLowValue|long|Reglage bas du dernier etalonnage|NUMERIC|0|0|16|NUMERIC|0|2
+002197|mfLastCalibrationHighValue|long|Reglage haut du dernier etalonnage|NUMERIC|0|0|16|NUMERIC|0|2
+002198|mfFaultIndicator|table|Indicateur d'arret ou de panne|CODE TABLE|0|0|8|CODE TABLE|0|3
+002199|mfRadarConstant|double|Constante radar|DB|1|-1000|16|DB|1|2
 002200|entry002200|table|Indicateur de fonctionnement de l eliminateur echos fixes|CODE TABLE|0|0|2|CODE TABLE|0|1
 002201|entry002201|table|INDICATOR FOR METHOD OF CALCULATION OF SPECTRAL DATA|CODE TABLE|0|0|4|CODE TABLE|0|2
 002202|entry002202|table|INDICATOR FOR TYPE OF PLATFORM|CODE TABLE|0|0|3|CODE TABLE|0|2
 002203|entry002203|table|WAVE MEASUREMENT INSTRUMENTATION|CODE TABLE|0|0|2|CODE TABLE|0|1
 002204|entry002204|table|INDICATEUR DES UNITES DE VITESSE DU VENT ET DU TYPE D'INSTRUMENTS UTILISES|CODE TABLE|0|0|3|CODE TABLE|0|2
-002205|entry002205|table|TYPE DE RADAR|CODE TABLE|0|0|8|CODE TABLE|0|3
-002206|entry002206|table|Indicateur de positionnement en site inhibe|CODE TABLE|0|0|2|CODE TABLE|0|1
-002207|entry002207|table|Sens de balayage en azimut|CODE TABLE|0|0|2|CODE TABLE|0|1
+002205|mfRadarType|table|TYPE DE RADAR|CODE TABLE|0|0|8|CODE TABLE|0|3
+002206|mfPositioningDisabled|table|Indicateur de positionnement en site inhibe|CODE TABLE|0|0|2|CODE TABLE|0|1
+002207|mfAzimuthScanDirection|table|Sens de balayage en azimut|CODE TABLE|0|0|2|CODE TABLE|0|1
 002210|entry002210|long|TYPE DE SITE (pour les SYNOR)|NUMERIC|0|0|6|NUMERIC|0|1
 002211|entry002211|long|TEMPS DE BON FONCTIONNEMENT DE LA STATION|HEURE|0|0|8|HEURE|0|1
 002212|entry002212|long|TEMPS DE BON FONCTIONNEMENT DE LA STATION|MINUTE|0|0|8|MINUTE|0|1
@@ -47,7 +47,7 @@
 004199|entry004199|long|Duree pendant laquelle l'humidite est <= 40%|MINUTE|0|0|11|MINUTE|0|2
 004200|entry004200|long|Duree de gel sous abri|MINUTE|0|0|11|MINUTE|0|2
 004201|entry004201|table|Periode d'observation|CODE TABLE|0|0|3|CODE TABLE|0|2
-005192|entry005192|long|Distance Ouest-Est du coin Nord-Ouest de l'image au radar|M|0|-1024000|24|M|0|3
+005192|mfDistanceNWCornerToRadarWE|long|Distance Ouest-Est du coin Nord-Ouest de l'image au radar|M|0|-1024000|24|M|0|3
 005193|entry005193|long|Distance w-e sur le plan de projection du coin nw de l'image|M|0|-1024000|24|M|0|3
 005194|entry005194|table|Indicateur du centre de projection|CODE TABLE|0|0|8|CODE TABLE|0|3
 005195|entry005195|double|Latitude de reference|DEGREE|5|-9000000|25|DEGREE|5|4
@@ -55,14 +55,14 @@
 005197|entry005197|double|Increment de l'azimut entre chaque tir de l'image polaire avant interpolation|DEGREE|2|0|10|DEGREE|2|2
 005217|entry005217|double|X-location from earth's centre in direction 0 Est|M|2|-1073741824|31|M|2|4
 005232|entry005232|long|Direction (spectral)|DEGREE|0|0|12|DEGREE|0|2
-006192|entry006192|long|Distance Nord-Sud du coin Nord-Ouest de l'image au radar|M|0|-1024000|24|M|0|3
+006192|mfDistanceNWCornerToRadarNS|long|Distance Nord-Sud du coin Nord-Ouest de l'image au radar|M|0|-1024000|24|M|0|3
 006193|entry006193|long|Distance d application de la correction en 1/r2|M|-3|0|16|M|-3|2
-006194|entry006194|long|Portee de debut de traitement d'un site|M|-3|0|16|M|-3|2
-006195|entry006195|long|Portee de fin de traitement d'un site|M|-3|0|16|M|-3|2
+006194|mfRangeStart|long|Portee de debut de traitement d'un site|M|-3|0|16|M|-3|2
+006195|mfRangeStop|long|Portee de fin de traitement d'un site|M|-3|0|16|M|-3|2
 006196|entry006196|long|Distance oblique maximal d'utilisation des donnees|M|-3|0|16|M|-3|2
 006197|entry006197|long|Distance NS sur le plan de projection du coin NW de l'image|M|0|-1024000|24|M|0|3
 006198|entry006198|double|Longitude du meridien parallele a l'axe des Y|DEGREE|5|-18000000|26|DEGREE|5|4
-006199|entry006199|long|Portee hydrologique utile|M|-3|0|10|M|-3|2
+006199|mfUsefulHydrologicalRange|long|Portee hydrologique utile|M|-3|0|10|M|-3|2
 006217|entry006217|double|Y-location from earth's centre in direction 90 est|M|2|-1073741824|31|M|2|4
 006232|entry006232|double|Wavenumber (spectral)|RADS/M|5|0|13|RADS/M|5|2
 007192|entry007192|double|HAUTEUR AU DESSUS DU SOL|M|2|0|15|M|2|2
@@ -144,7 +144,7 @@
 016195|entry016195|long|Number of intracloud lightning flashes|NUMERIC|0|0|16|NUMERIC|0|2
 019191|entry019191|long|Length of the great axis of the fitting ellipse of the cloud system|M|-3|0|25|M|-3|4
 019192|entry019192|long|Length of the small axis of the fitting ellipse of the cloud system|M|-3|0|25|M|-3|4
-019193|entry019193|long|Angle of the fitting ellipse of the cloud system|DEGREE TRUE|0|0|9|DEGREE TRUE|0|2
+019193|mfAngleOfFittingEllipse|long|Angle of the fitting ellipse of the cloud system|DEGREE TRUE|0|0|9|DEGREE TRUE|0|2
 019194|entry019194|long|Area of the cloud system at this brightness temperature threshold|M**2|-6|0|28|M**2|-6|4
 019200|entry019200|double|Area expansion rate of the cloud system|S-1|5|-1048576|21|S-1|5|3
 020192|entry020192|table|Classe de nebulosite SYMPO|CODE TABLE|0|0|3|CODE TABLE|0|2
@@ -173,13 +173,13 @@
 020222|entry020222|table|Temps sensible|CODE TABLE|0|0|6|CODE TABLE|0|3
 020223|entry020223|double|Etendue de la couche nuageuse en octas|NUMERIC|1|0|7|NUMERIC|1|1
 021192|entry021192|double|Radar back scatter|DB|2|-5000|13|DB|2|2
-021193|entry021193|long|Noise figure|%|0|0|7|%|0|1
-021194|entry021194|long|Background noise level|NUMERIC|0|0|8|NUMERIC|0|1
-021195|entry021195|long|Missing packet counter|NUMERIC|0|-127|8|NUMERIC|0|1
-021196|entry021196|flag|Uwa product confidence|FLAG TABLE|0|0|12|FLAG TABLE|0|4
-021197|entry021197|flag|Uwi product confidence|FLAG TABLE|0|0|12|FLAG TABLE|0|4
-021198|entry021198|flag|Ura product confidence|FLAG TABLE|0|0|8|FLAG TABLE|0|3
-021199|entry021199|flag|Uat quality analysis tests|FLAG TABLE|0|0|7|FLAG TABLE|0|3
+021193|mfNoiseFigure|long|Noise figure|%|0|0|7|%|0|1
+021194|mfBackgroundNoise|long|Background noise level|NUMERIC|0|0|8|NUMERIC|0|1
+021195|mfMissingPacketCounter|long|Missing packet counter|NUMERIC|0|-127|8|NUMERIC|0|1
+021196|mfUWAProductConfidence|flag|Uwa product confidence|FLAG TABLE|0|0|12|FLAG TABLE|0|4
+021197|mfUWIProductConfidence|flag|Uwi product confidence|FLAG TABLE|0|0|12|FLAG TABLE|0|4
+021198|mfURAProductConfidence|flag|Ura product confidence|FLAG TABLE|0|0|8|FLAG TABLE|0|3
+021199|mfUATProductConfidence|flag|Uat quality analysis tests|FLAG TABLE|0|0|7|FLAG TABLE|0|3
 021201|entry021201|long|Peakiness|NUMERIC|0|0|16|NUMERIC|0|2
 021202|entry021202|flag|Altimeter calibration status|FLAG TABLE|0|0|4|FLAG TABLE|0|2
 021203|entry021203|flag|Altimeter instrument mode|FLAG TABLE|0|0|9|FLAG TABLE|0|4
@@ -194,9 +194,9 @@
 021212|entry021212|double|Open loop correction (agc)|DB|3|-3000|14|DB|3|2
 021214|entry021214|table|Uat quality summary|CODE TABLE|0|0|3|CODE TABLE|0|2
 021215|entry021215|long|Uat across-track band number|NUMERIC|0|0|4|NUMERIC|0|1
-021216|entry021216|double|Reflectivite pour la valeur du pixel|DBZ|1|0|16|DBZ|1|2
-021217|entry021217|double|Reflectivite theorique|DBZ|1|0|16|DBZ|1|2
-021218|entry021218|double|Reflectivite mesuree|DBZ|1|0|16|DBZ|1|2
+021216|mfReflectivityValueOfPixel|double|Reflectivite pour la valeur du pixel|DBZ|1|0|16|DBZ|1|2
+021217|mfTheoricalReflectivity|double|Reflectivite theorique|DBZ|1|0|16|DBZ|1|2
+021218|mfMeasuredReflecitivity|double|Reflectivite mesuree|DBZ|1|0|16|DBZ|1|2
 021222|entry021222|long|DOPPLER SPECTRUM 0 TH MOMENT (AMPLITUDE)|DB|0|0|7|DB|0|1
 021225|entry021225|flag|PRESCAT PRODUCT CONFIDENCE|FLAG TABLE|0|0|10|FLAG TABLE|0|4
 021226|entry021226|long|Pourcentage de masque|%|0|0|7|%|0|1
@@ -237,15 +237,15 @@
 025193|entry025193|double|Numero de version logicielle du calculateur|NUMERIC|2|0|16|NUMERIC|2|2
 025194|entry025194|double|Numero de version de composite|NUMERIC|2|0|16|NUMERIC|2|2
 025195|entry025195|long|Numero de version de carte utilisee pour composition|NUMERIC|0|0|8|NUMERIC|0|1
-025196|entry025196|table|Methode de cumul|CODE TABLE|0|0|8|CODE TABLE|0|3
-025197|entry025197|long|Nombre d'images prises en compte|NUMERIC|0|0|24|NUMERIC|0|3
+025196|mfAccumulationMethod|table|Methode de cumul|CODE TABLE|0|0|8|CODE TABLE|0|3
+025197|mfNumberOfUsedImages|long|Nombre d'images prises en compte|NUMERIC|0|0|24|NUMERIC|0|3
 025198|entry025198|long|Nombre de portes par tir|NUMERIC|0|0|16|NUMERIC|0|2
 025199|entry025199|table|Methode d'integration distance|CODE TABLE|0|0|4|CODE TABLE|0|2
 025200|entry025200|table|Methode d'integration azimut|CODE TABLE|0|0|4|CODE TABLE|0|2
 025207|entry025207|double|Correction d'intensite de precipitation|KG/M**2|3|0|18|KG/M**2|3|3
 025208|entry025208|double|SAMPLING INTERVAL (TIME)|S|4|0|15|S|4|2
 025209|entry025209|double|SAMPLING INTERVAL (SPACE)|M|2|0|12|M|2|2
-025210|entry025210|double|Facteur de correction global (pluie pluviometre)/(pluie radar)|NUMERIC|2|0|10|NUMERIC|2|2
+025210|mfGlobalCorrectionRainGaugeByRainRadar|double|Facteur de correction global (pluie pluviometre)/(pluie radar)|NUMERIC|2|0|10|NUMERIC|2|2
 025211|entry025211|long|Seuil de reflectivite pour le calcul des deplacements d'echos radar|DBZ|0|0|7|DBZ|0|1
 025212|entry025212|long|Seuil d'occurrence pour la definition des echos fixes (%)|NUMERIC|0|0|7|NUMERIC|0|1
 025213|entry025213|long|Seuil de presence minimal des echos fixes pour valider l'image (%)|NUMERIC|0|0|7|NUMERIC|0|1
@@ -258,8 +258,8 @@
 025228|entry025228|table|Data used for diagnostic|CODE TABLE|0|0|5|CODE TABLE|0|3
 025229|entry025229|long|Method used to diagnose the nature of a cloud system|CCITT IA|0|0|24|CCITT IA|0|3
 026192|entry026192|long|Duree d'humectation|MINUTE|0|0|11|MINUTE|0|2
-030192|entry030192|flag|Mode de balayage|FLAG TABLE|0|0|8|FLAG TABLE|0|3
-031192|entry031192|long|Facteur super elargi de repetition differe du descripteur|NUMERIC|0|0|32|NUMERIC|0|4
+030192|mfScanningMode|flag|Mode de balayage|FLAG TABLE|0|0|8|FLAG TABLE|0|3
+031192|inputLongDelayedDescriptorReplicationFactor|long|Facteur super elargi de repetition differe du descripteur|Numeric|0|0|32|NUMERIC|0|4
 033192|entry033192|table|FLAG DE QUALITE SUR PARAMETRE|CODE TABLE|0|0|3|CODE TABLE|0|2
 033193|entry033193|table|Attribut de la valeur qui suit|CODE TABLE|0|0|2|CODE TABLE|0|1
 033212|entry033212|table|QUALITE DE LA MESURE DE PRESSION|CODE TABLE|0|0|2|CODE TABLE|0|1
@@ -284,25 +284,25 @@
 033236|entry033236|long|Probabilite de pluie moderee|%|0|0|7|%|0|1
 033237|entry033237|long|Probabilite de pluie forte|%|0|0|7|%|0|1
 035192|entry035192|long|Numero de l'amendement|NUMERIC|0|0|7|NUMERIC|0|1
-048192|entry048192|long|Bit de calage|NUMERIC|0|0|1|NUMERIC|0|1
+048192|mfStuffingBit|long|Bit de calage|NUMERIC|0|0|1|NUMERIC|0|1
 049192|entry049192|table|Cq integrite du message|CODE TABLE|0|0|4|CODE TABLE|0|2
-049193|entry049193|table|Code de qualite arret-panne|CODE TABLE|0|0|4|CODE TABLE|0|2
-049194|entry049194|table|Code de qualite etalonnage|CODE TABLE|0|0|4|CODE TABLE|0|2
-049195|entry049195|table|Code de qualite eliminateur d'echos fixes|CODE TABLE|0|0|4|CODE TABLE|0|2
+049193|mfEndOfOutageQualityCode|table|Code de qualite arret-panne|CODE TABLE|0|0|4|CODE TABLE|0|2
+049194|mfCalibrationQualityCode|table|Code de qualite etalonnage|CODE TABLE|0|0|4|CODE TABLE|0|2
+049195|mfClutterSuppressionState|table|Code de qualite eliminateur d'echos fixes|CODE TABLE|0|0|4|CODE TABLE|0|2
 049196|entry049196|table|Cq controle temporel|CODE TABLE|0|0|4|CODE TABLE|0|2
 049197|entry049197|table|Cq controle spatial|CODE TABLE|0|0|4|CODE TABLE|0|2
 049198|entry049198|table|Cq controle de coherence echos fixes|CODE TABLE|0|0|4|CODE TABLE|0|2
 049199|entry049199|table|Cq comparaison avec les donnees satellitaires|CODE TABLE|0|0|4|CODE TABLE|0|2
-049201|entry049201|table|Code detection de propagation anormale|CODE TABLE|0|0|4|CODE TABLE|0|2
-049204|entry049204|long|Statut de la donnee|%|0|0|8|%|0|1
-049209|entry049209|table|Code pour l'unite de mesure de la lame d'eau|CODE TABLE|0|0|8|CODE TABLE|0|3
-049210|entry049210|table|Numero de PVR|CODE TABLE|0|0|2|CODE TABLE|0|1
-049211|entry049211|table|Cptq images emises par le calculateur radar|CODE TABLE|0|0|16|CODE TABLE|0|4
-049212|entry049212|table|Cptq images recues par le concentrateur|CODE TABLE|0|0|16|CODE TABLE|0|4
-049213|entry049213|table|Cptq images emises par le concentrateur radar|CODE TABLE|0|0|16|CODE TABLE|0|4
-049214|entry049214|table|Cptq images recues par le systeme de diffusion|CODE TABLE|0|0|16|CODE TABLE|0|4
-049215|entry049215|table|Cptq images emises par le systeme de diffusion|CODE TABLE|0|0|16|CODE TABLE|0|4
-049216|entry049216|table|Cptq images recues par la machine d'archivage|CODE TABLE|0|0|16|CODE TABLE|0|4
+049201|mfAnormalPropagationDetectionCode|table|Code detection de propagation anormale|CODE TABLE|0|0|4|CODE TABLE|0|2
+049204|mfDataStatus|long|Statut de la donnee|%|0|0|8|%|0|1
+049209|mfWaterLevelUnit|table|Code pour l'unite de mesure de la lame d'eau|CODE TABLE|0|0|8|CODE TABLE|0|3
+049210|mfnumberOfPVR|table|Numero de PVR|CODE TABLE|0|0|2|CODE TABLE|0|1
+049211|mfSentByRadarComputer|table|Cptq images emises par le calculateur radar|CODE TABLE|0|0|16|CODE TABLE|0|4
+049212|mfReceivedByConcentrator|table|Cptq images recues par le concentrateur|CODE TABLE|0|0|16|CODE TABLE|0|4
+049213|mfSentByConcentrator|table|Cptq images emises par le concentrateur radar|CODE TABLE|0|0|16|CODE TABLE|0|4
+049214|mfReceivedByBroadcast|table|Cptq images recues par le systeme de diffusion|CODE TABLE|0|0|16|CODE TABLE|0|4
+049215|mfSentByBroadcast|table|Cptq images emises par le systeme de diffusion|CODE TABLE|0|0|16|CODE TABLE|0|4
+049216|mfReceivedByArchiving|table|Cptq images recues par la machine d'archivage|CODE TABLE|0|0|16|CODE TABLE|0|4
 049220|entry049220|long|Altitude de l'isotherme 0 degre du PVR|M|-2|0|7|M|-2|1
 049221|entry049221|double|Taux de decroissance du PVR au dessus de l'isotherme 0 degre|DB/KM|1|-100|7|DB/KM|1|1
 049222|entry049222|long|Largeur de la bande brillante du PVR|M|-2|0|5|M|-2|1
